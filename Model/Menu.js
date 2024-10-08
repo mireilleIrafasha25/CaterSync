@@ -21,7 +21,7 @@ const Menuschema=new schema({
     category:{
         type:String,
         enum:{
-            value:["Main Course","Appetizer","Dessert"],
+            values:["Main Course","Appetizer","Dessert"],
             message:"Value must be Main Course or Appetizer or Dessert"
     },
     required:true

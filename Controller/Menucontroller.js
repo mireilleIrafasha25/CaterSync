@@ -2,6 +2,7 @@ import MenuModel from "../Model/Menu.js";
 import cloudinary from "../Util/cloudinary.js"
 import asyncWrapper from "../Middleware/async.js";
  import {validationResult} from "express-validator"
+ import { BadRequestError } from "../Error/BadrequestError.js"; 
 export const AddMenu=asyncWrapper(async(req,res,next)=>
 {
     // allow image file to be uploaded
@@ -14,9 +15,23 @@ export const AddMenu=asyncWrapper(async(req,res,next)=>
     // validate request body
     const error=validationResult(req)
     if(!error.isEmpty())
-    {
-   throw new Error(error)
-    }
+   {
+    throw new BadRequestError(error.array()[0].msg)
+   }
+   // create new menu
+   const NewMenu=await MenuModel.create({
+    name:req.body.name,
+    price:req.body.price,
+    description:req.body.description,
+    category:req.body.category,
+    image:{
+        url:result.url
+         }
+   })
+   res.status(201).json({
+    message:"Menu created successfully",
+    menu:NewMenu
+   })
 
 
 })

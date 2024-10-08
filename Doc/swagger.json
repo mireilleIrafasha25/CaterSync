@@ -1,0 +1,107 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "CaterSync",
+      "description": "This API Specification for the Catering services",
+      "contact": {
+        "email": "mireilleirafasha@gmail.com"
+      },
+      "license": {
+        "name": "MIT",
+        "url": "http://www.opensource.org/licenses/mit"
+      },
+      "version": "1.0.0"
+    },
+    "externalDocs": {
+      "url": "https://github.com/mireilleIrafasha25/CaterSync",
+      "description": "Find more info here"
+    },
+    "basePath": "/Cater",
+    "servers": [
+      {
+        "url": "http://localhost:5005",
+        "description": "Local server"
+      },
+      {
+        "url": "https://CaterSync.onrender.com",
+        "description": "Production server"
+      }
+    ],
+    "schemes": [
+      "https",
+      "http"
+    ],
+    "tags": [
+      {
+        "name": "Catering",
+        "description": "Operation pertaining to catering"
+      }
+    ],
+    "paths": {  
+      "/add": {
+        "post": {
+          "tags": [
+            "Catering"
+          ],
+          "summary": "Add a new menu",
+          "description": "Add a new menu with the provided details",
+          "parameters": [
+            {
+              "name": "category",
+              "in": "formData",
+              "required": true,
+              "type": "string",
+              "enum": ["Main Course", "Dessert", "Appetizer"]
+            },
+            {
+              "name": "name",
+              "in": "formData",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "image",
+              "in": "formData",
+              "required": true,
+              "type": "file"
+            },
+            {
+              "name": "description",
+              "in": "formData",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "price",
+              "in": "formData",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Service added successfully"
+            },
+            "401": {
+              "description": "Bad request - Validation error"
+            }
+          }
+        }
+      }
+    },
+    "components": {  
+      "schemas": { 
+        "Menu": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "price": { "type": "number" },
+            "image": { "type": "string" },
+            "description": { "type": "string" },
+            "category": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+  
