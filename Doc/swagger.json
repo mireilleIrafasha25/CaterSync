@@ -38,7 +38,7 @@
       }
     ],
     "paths": {  
-      "/add": {
+      "/menu/add": {
         "post": {
           "tags": [
             "Catering"

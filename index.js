@@ -1,6 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import router from "./Routes/MenuRoute.js"
+import router from "./Routes/index.js"
 import dotenv from "dotenv"
 import errorHandler from "./Middleware/errorHandler.js"
 import documentation from "./Doc/swagger.json" assert{type:"json"};
